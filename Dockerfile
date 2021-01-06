@@ -1,8 +1,8 @@
 FROM "centos:8"
 
 # Update system packages and install dependencies
-RUN yum update
-RUN yum install -y ruby \ 
+RUN yum update \
+    && yum install -y ruby \ 
     && gem install bundler
 
 # Prepare project folder structure
