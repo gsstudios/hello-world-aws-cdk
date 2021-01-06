@@ -1,10 +1,13 @@
-*.swp
-package-lock.json
+.venv
+.git
+.gitignore
+README.md
 __pycache__
 .pytest_cache
+*.swp
+package-lock.json
 .env
 *.egg-info
-.venv
 
 # CDK asset staging directory
 .cdk.staging

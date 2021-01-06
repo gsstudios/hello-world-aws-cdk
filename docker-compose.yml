@@ -1,0 +1,20 @@
+version: "3"
+services:
+    serve:
+        build: ./hello_world_app/
+        ports:
+            - "80:8080"
+    deploy:
+        build: .
+        command: >
+            sh -c "cdk bootstrap
+            && cdk synth
+            && cdk deploy"
+        env_file:
+            - ./aws.env
+    destroy:
+        build: .
+        command: >
+            sh -c "cdk destroy"
+        env_file:
+            - ./aws.env
