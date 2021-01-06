@@ -7,7 +7,7 @@ RUN yum update \
 
 # Prepare project folder structure
 RUN mkdir -p /opt/hello-world
-COPY ./opt/hello-world/ /opt/hello-world
+COPY . /opt/hello-world
 
 # Initialise project
 WORKDIR /opt/hello-world
