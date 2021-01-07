@@ -30,9 +30,11 @@ set +a
 ./execute.sh deploy
 ```
 
+3. Open the link outputted by the application using your favourite web browser
+
 Destroy AWS cloudformation stack
 
-1. Setup AWS environment variables
+1. Setup AWS environment variables (if not already done)
 ```
 set -a
 source aws.env
@@ -47,8 +49,8 @@ set +a
 ### Assumptions
 - Cloud development kit (CDK) has used responsible defaults in terms of both performance and security
 - At the end of each docker image, the user has been set to nobody. This will help prevent any malicious code from being executed in the event of a system compromise
-- Fargate was used in preference over standard ECS to allow a more simple and scalable configuration
+- Fargate was used in preference over standard ECS to allow for a simpler yet scalable solution
 - Containerised using Docker to avoid poluting the system with project dependencies
-- Whilst Linux was a heavy focus in the design, this project could theorectically be run in Windows (Pro, Enterprise or Education edition)
+- Whilst Linux was a heavy focus in the design, this project could be run in Windows (Pro, Enterprise or Education edition)
 - Region by default is set to ap-southeast-2 (Sydney, Australia) in-case of any strict compliance requirements
 - As aws.env contains sensitive information (your AWS keys), you may choose to encrypt this file using openssl and decrypt only when required. Alternatively you can manually set the environment variables
