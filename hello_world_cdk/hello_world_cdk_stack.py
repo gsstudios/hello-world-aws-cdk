@@ -16,5 +16,5 @@ class HelloWorldCdkStack(core.Stack):
                                                                image=ecs.ContainerImage.from_asset("./hello_world_app"),
                                                                container_port=8080
                                                            ),
-                                                           memory_limit_mib=2048,
+                                                           memory_limit_mib=1024,
                                                            public_load_balancer=True)   
