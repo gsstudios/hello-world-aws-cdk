@@ -47,12 +47,12 @@ set +a
 ```
 
 ### Assumptions
-- I have created this script to make execution of this project simple. The user is not required to remember any lengthy docker commands unless desired
+- I have created this script (```execute.sh```) to make execution of this project simple. The user is not required to remember any lengthy docker commands unless desired
 - Cloud development kit (CDK) has used responsible defaults in terms of both performance and security
 - At the end of each docker image, the user has been set to nobody. This will help prevent any malicious code from being executed in the event of a system compromise
 - Fargate was used in preference over standard ECS to allow for a simpler yet scalable solution
 - Containerised using Docker to avoid poluting the system with project dependencies
 - Whilst Linux was a heavy focus in the design, this project could be run in Windows (Pro, Enterprise or Education edition)
-- Region by default is set to ap-southeast-2 (Sydney, Australia) in-case of any strict compliance requirements
+- Region by default is set to ```ap-southeast-2``` (Sydney, Australia) in-case of any strict compliance requirements
 - A docker-compose build is always run before actual execution of commands to ensure the latest changes are present in the docker image
-- As aws.env contains sensitive information (your AWS keys), you may choose to encrypt this file using openssl and decrypt only when required. Alternatively you can manually set the environment variables
+- As ```aws.env``` contains sensitive information (your AWS keys), you may choose to encrypt this file using openssl and decrypt only when required. Alternatively you can manually set the environment variables
