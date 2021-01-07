@@ -7,8 +7,8 @@
 #
 
 # Check if docker is installed
-if [ ! $(command -v docker) ]; then
-    echo "Please install docker on your system. Visit: https://docs.docker.com/engine/install/"
+if [ ! $(command -v docker) ] || [ ! $(command -v docker-compose) ]; then
+    echo "Please ensure docker and docker-compose are properly installed. Visit: https://docs.docker.com/engine/install/"
     exit 1
 fi
 
