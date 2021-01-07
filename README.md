@@ -1,49 +1,54 @@
-REA Systems Engineer practical task
-===================================
+## Hello world in AWS
+This repo contains code to allow for the deployment of the hello world application written in Ruby onto AWS infrastructure.
 
-Provision a new application server and deploy the application in this Git repository
-------------------------------------------------------------------------------------
-- Write configuration-as-code recipes (using your preferred orchestration software) to:
-  - Create the server (can be local VM or AWS based)
-  - Configure an OS image (your choice) appropriately.
-  - Deploy the provided application.
-  - Make the application available on port 80.
-  - Ensure that the server is locked down and secure.
-- Provide documentation:
-  - Instructions for the reviewer which explain how your code should be executed
-  - Requirements for running. (AWS account? Base images? Other tooling pre-installed?)
-  - Explanation of assumptions and design choices.
+### Prerequisites
+- ```docker``` and ```docker-compose``` are installed
+- copy of your AWS ```access_key_id``` and ```secret_access_key``` stored in aws.env
 
-Expected output
----------------
-- Scripts and/or configuration that we can use to deploy the application.
-- Documentation.
+### How to run
 
-Submission format
------------------
-Preferred option is a link to public git repository with your solution. We understand you may not want the solution associated with your public profile, feel free to create a new github account for the submission. Alternatively a [git-bundle](https://www.kernel.org/pub/software/scm/git/docs/git-bundle.html) or zip archive are acceptable.
+Serve app locally
 
+1. Run the command
+```
+./execute.sh serve
+```
 
-To get the provided application working locally
-===============================================
+2. Open your favourite web browser (i.e. Google Chrome), and head to ```http://localhost/```
 
-    git clone git@github.com:rea-cruitment/simple-sinatra-app.git
-    shell $ bundle install
-    shell $ bundle exec rackup
+Deploy app onto AWS
 
+1. Setup AWS environment variables
+```
+set -a
+source aws.env
+set +a
+```
 
-How we review the submission
-============================
-We rate the solution and documentation against all the following categories:
+2. Run the command
+```
+./execute.sh deploy
+```
 
-- Simplicity
-- Code / documentation layout
-- Ease of deployment
-- Idempotency
-- Security
-- Anti-fragility
+Destroy AWS cloudformation stack
 
-The documentation is as important as the scripts. We are looking to understand why you chose a certain solution and what trade offs it has.
+1. Setup AWS environment variables
+```
+set -a
+source aws.env
+set +a
+```
 
-Documenting any known short comings of a solution and the reasons why will be seen as more positive than unmentioned issues. 
+2. Run the command
+```
+./execute.sh destroy
+```
 
+### Assumptions
+- Cloud development kit (CDK) has used responsible defaults in terms of both performance and security
+- At the end of each docker image, the user has been set to nobody. This will help prevent any malicious code from being executed in the event of a system compromise
+- Fargate was used in preference over standard ECS to allow a more simple and scalable configuration
+- Containerised using Docker to avoid poluting the system with project dependencies
+- Whilst Linux was a heavy focus in the design, this project could theorectically be run in Windows (Pro, Enterprise or Education edition)
+- Region by default is set to ap-southeast-2 (Sydney, Australia) in-case of any strict compliance requirements
+- As aws.env contains sensitive information (your AWS keys), you may choose to encrypt this file using openssl and decrypt only when required. Alternatively you can manually set the environment variables

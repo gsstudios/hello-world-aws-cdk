@@ -10,11 +10,15 @@ services:
             sh -c "cdk bootstrap
             && cdk synth
             && cdk deploy"
-        env_file:
-            - ./aws.env
+        environment:
+            - AWS_ACCESS_KEY_ID
+            - AWS_SECRET_ACCESS_KEY
+            - AWS_DEFAULT_REGION
     destroy:
         build: .
         command: >
             sh -c "cdk destroy"
-        env_file:
-            - ./aws.env
+        environment:
+            - AWS_ACCESS_KEY_ID
+            - AWS_SECRET_ACCESS_KEY
+            - AWS_DEFAULT_REGION
